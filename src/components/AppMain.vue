@@ -25,7 +25,7 @@ export default {
           this.posts = response.data.results;
           this.loading = false;
         }
-      });
+      })
     },
     truncateText(text) {
       if (text.length > this.maxNumChar) {
@@ -34,14 +34,14 @@ export default {
 
       return text;
     }
-  },
+  }
 }
 </script>
 
 <template>
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center">BOOLFOLIO</h1>
+      <h1 class="text-center text-blue"><strong><em>BOOLFOLIO</em></strong></h1>
     </div>
     <AppLoader v-if="loading" />
     <div v-else class="container">
@@ -55,10 +55,19 @@ export default {
               <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
             </div>
             <div class="card-body">
+              <p>
+                <span v-if="post.type"><strong><em>{{ post.type.name }}</em></strong></span>
+                <span v-else><strong><em>Tipologia non assegnata</em></strong></span>
+              </p>
+              <p v-if="post.tecnologies">
+                <span class="badge text-bg-primary me-3" v-for="tecnology in post.tecnologies" :key="tecnology.id">
+                  {{ tecnology.name }}
+                </span>
+              </p>
               {{ truncateText(post.content) }}
             </div>
             <div class="card-footer">
-              <a href="#" @click="$emit('showPost', post)" class="btn btn-sm btn-primary">Mostra Post</a><br />
+              <a href="#" class="btn btn-sm btn-primary">Mostra Post</a><br />
             </div>
           </div>
         </div>

@@ -1,9 +1,7 @@
 <script>
-
 export default {
     name: 'AppLoader'
 }
-
 </script>
 
 <template>
@@ -11,8 +9,6 @@ export default {
 </template>
 
 <style lang="scss">
-/* @use'./styles/generals.scss' as *; */
-
 .loader {
     border: 16px solid #f3f3f3;
     /* Light grey */
