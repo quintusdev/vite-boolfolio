@@ -10,7 +10,7 @@ export default {
       baseUrl: 'http://localhost:8000',
       posts: [],
       loading: true
-    };
+    }
   },
   created() {
     this.getPosts();
@@ -20,10 +20,10 @@ export default {
       this.loading = true;
       /* chiamata AXIOS inserendo il baseUrl e il rimanente indirizzo alla pagina */
       axios.get(`${this.baseUrl}/api/posts`).then((response) => {
-        /* importo i risultati contenuto nell'APi */
-        this.posts = response.data.results.data;
-        /* imposto il loading a false */
-        this.loading = false;
+        if (response.data.success) {
+          this.posts = response.data.results;
+          this.loading = false;
+        }
       });
     }
   },
@@ -34,15 +34,23 @@ export default {
   <div class="row">
     <div class="col-12">
       <h1 class="text-center">BOOLFOLIO</h1>
-      <p v-if="!loading" class="text-center"><strong>{{ posts }}</strong></p>
     </div>
     <AppLoader v-if="loading" />
     <div v-else class="container">
       <div class="row">
         <div class="col-12" v-for="post in posts" :key="post.id">
           <div class="card">
+            <div class="card-header">
+              {{ post.title }}
+            </div>
             <div class="card-image-top">
-              <img :src="`${baseUrl}/${post.img}`" class="img-fluid" alt="Immagine del post">
+              <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
+            </div>
+            <div class="card-body">
+              {{ post.content }}
+            </div>
+            <div class="card-footer">
+              <a href="#" @click="$emit('showPost', post)" class="btn btn-sm btn-primary">Mostra Post</a><br />
             </div>
           </div>
         </div>
