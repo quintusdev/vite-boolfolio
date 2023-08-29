@@ -9,7 +9,8 @@ export default {
     return {
       baseUrl: 'http://localhost:8000',
       posts: [],
-      loading: true
+      loading: true,
+      maxNumChar: 60
     }
   },
   created() {
@@ -25,6 +26,13 @@ export default {
           this.loading = false;
         }
       });
+    },
+    truncateText(text) {
+      if (text.length > this.maxNumChar) {
+        return text.substr(0, this.maxNumChar) + '...';
+      }
+
+      return text;
     }
   },
 }
@@ -38,7 +46,7 @@ export default {
     <AppLoader v-if="loading" />
     <div v-else class="container">
       <div class="row">
-        <div class="col-12" v-for="post in posts" :key="post.id">
+        <div class="col-12 col-md-3 my-1 min-height-200px" v-for="post in posts" :key="post.id">
           <div class="card">
             <div class="card-header">
               {{ post.title }}
@@ -47,7 +55,7 @@ export default {
               <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
             </div>
             <div class="card-body">
-              {{ post.content }}
+              {{ truncateText(post.content) }}
             </div>
             <div class="card-footer">
               <a href="#" @click="$emit('showPost', post)" class="btn btn-sm btn-primary">Mostra Post</a><br />
@@ -59,4 +67,8 @@ export default {
   </div>
 </template>
 
-<style></style>
+<style lang="scss">
+.min-height-200px {
+  min-height: 200px !important;
+}
+</style>
