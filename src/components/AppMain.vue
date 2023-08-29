@@ -6,6 +6,8 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+  CIao vite
+</template>
 
 <style></style>
