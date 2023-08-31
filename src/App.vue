@@ -13,7 +13,8 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain />
+  <!-- COLLEGAMENTO ALLA PAGINA MAIN ATTRAVERSO ROUTER VIEWS -->
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

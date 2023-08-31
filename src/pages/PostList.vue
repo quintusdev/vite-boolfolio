@@ -3,7 +3,7 @@ import AppLoader from './AppLoader.vue';
 import axios from 'axios';
 
 export default {
-  name: 'AppMain',
+  name: 'PostList',
   components: { AppLoader },
   data() {
     return {
@@ -21,17 +21,22 @@ export default {
       this.loading = true;
       /* chiamata AXIOS inserendo il baseUrl e il rimanente indirizzo alla pagina */
       axios.get(`${this.baseUrl}/api/posts`).then((response) => {
+        /* SE IL DATA.SUCCESS E' TRUE  */
         if (response.data.success) {
+          /* VISUALIZZO I POST DALLA API E IMPOSTO IL LOADER A FALSE */
           this.posts = response.data.results;
           this.loading = false;
         }
       })
     },
+    /* FUNZIONE PER TRONCARE IL TESTO DOPO X CARATTERI */
     truncateText(text) {
+      /* SE I CARATTERTI SONO > DELLA VARIABILE IMPOSTATA */
       if (text.length > this.maxNumChar) {
+        /* RITORNA SOLO LA PRIMA PARTE E L'ULTIMO CHAR DI MAXNUMCHAR + ...*/
         return text.substr(0, this.maxNumChar) + '...';
       }
-
+      /* RITORNO IL TESTO CON I TRE PUNTINI */
       return text;
     }
   }
