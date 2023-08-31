@@ -43,7 +43,7 @@ export default {
     <div v-else class="container">
       <div class="row">
         <div class="col-12 col-md-3 my-1 min-height-200px" v-for="post in posts" :key="post.id">
-          <PostCard />
+          <PostCard :post="post" />
         </div>
       </div>
     </div>

@@ -1,6 +1,9 @@
 <script>
 export default {
     name: "PostCard",
+    props: {
+        post: Object,
+    },
     data() {
         return {
             baseUrl: 'http://localhost:8000',
@@ -10,6 +13,9 @@ export default {
     methods: {
         /* FUNZIONE PER TRONCARE IL TESTO DOPO X CARATTERI */
         truncateText(text) {
+            if (!text) {
+                return text;
+            }
             /* SE I CARATTERTI SONO > DELLA VARIABILE IMPOSTATA */
             if (text.length > this.maxNumChar) {
                 /* RITORNA SOLO LA PRIMA PARTE E L'ULTIMO CHAR DI MAXNUMCHAR + ...*/
