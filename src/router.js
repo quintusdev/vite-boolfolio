@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage.vue";
 import PostList from "./pages/PostList.vue";
 
 /* creiamo il router */
-const routes = createRouter({
+const router = createRouter({
     history: createWebHistory(), /* usiamo la history di Vue Router perchè è più veloce*/
     routes: [
         /* imposto la rotta per la homepage */

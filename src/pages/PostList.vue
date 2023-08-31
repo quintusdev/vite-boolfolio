@@ -1,16 +1,16 @@
 <script>
-import AppLoader from './AppLoader.vue';
 import axios from 'axios';
+import AppLoader from '../components/AppLoader.vue';
+import PostCard from '../components/PostCard.vue';
 
 export default {
   name: 'PostList',
-  components: { AppLoader },
+  components: { AppLoader, PostCard },
   data() {
     return {
       baseUrl: 'http://localhost:8000',
       posts: [],
       loading: true,
-      maxNumChar: 60
     }
   },
   created() {
@@ -29,16 +29,7 @@ export default {
         }
       })
     },
-    /* FUNZIONE PER TRONCARE IL TESTO DOPO X CARATTERI */
-    truncateText(text) {
-      /* SE I CARATTERTI SONO > DELLA VARIABILE IMPOSTATA */
-      if (text.length > this.maxNumChar) {
-        /* RITORNA SOLO LA PRIMA PARTE E L'ULTIMO CHAR DI MAXNUMCHAR + ...*/
-        return text.substr(0, this.maxNumChar) + '...';
-      }
-      /* RITORNO IL TESTO CON I TRE PUNTINI */
-      return text;
-    }
+
   }
 }
 </script>
@@ -52,32 +43,7 @@ export default {
     <div v-else class="container">
       <div class="row">
         <div class="col-12 col-md-3 my-1 min-height-200px" v-for="post in posts" :key="post.id">
-          <div class="card">
-            <div class="card-header">
-              {{ post.title }}
-            </div>
-            <div class="card-image-top">
-              <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
-            </div>
-            <!-- sezione tipologia -->
-            <div class="card-body">
-              <p>
-                <span v-if="post.type"><strong><em>{{ post.type.name }}</em></strong></span>
-                <span v-else><strong><em>Tipologia non assegnata</em></strong></span>
-              </p>
-              <!-- sezione tecnologia usata -->
-              <p v-if="post.tecnologies">
-                <span class="badge text-bg-primary me-3" v-for="tecnology in post.tecnologies" :key="tecnology.id">
-                  {{ tecnology.name }}
-                </span>
-              </p>
-              <!-- paragarfo del testo -->
-              {{ truncateText(post.content) }}
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-sm btn-primary">Mostra Post</a><br />
-            </div>
-          </div>
+          <PostCard />
         </div>
       </div>
     </div>
