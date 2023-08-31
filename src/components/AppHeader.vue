@@ -30,7 +30,7 @@ export default {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- GENERAZIONE LINK NELLA NAVBAR -->
                     <li class="nav-item" v-for="(item, index) in menuItems" :key="index">
-                        <a class="nav-link" href="#">{{ item.label }}</a>
+                        <a class="nav-link" :to="{ name: item.ruoteName }">{{ item.label }}</a>
                     </li>
                 </ul>
                 <!-- BARRA DI RICERCA -->
