@@ -59,16 +59,19 @@ export default {
             <div class="card-image-top">
               <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
             </div>
+            <!-- sezione tipologia -->
             <div class="card-body">
               <p>
                 <span v-if="post.type"><strong><em>{{ post.type.name }}</em></strong></span>
                 <span v-else><strong><em>Tipologia non assegnata</em></strong></span>
               </p>
+              <!-- sezione tecnologia usata -->
               <p v-if="post.tecnologies">
                 <span class="badge text-bg-primary me-3" v-for="tecnology in post.tecnologies" :key="tecnology.id">
                   {{ tecnology.name }}
                 </span>
               </p>
+              <!-- paragarfo del testo -->
               {{ truncateText(post.content) }}
             </div>
             <div class="card-footer">
