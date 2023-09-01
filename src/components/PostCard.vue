@@ -1,4 +1,6 @@
 <script>
+import { store } from '../store';
+
 export default {
     name: "PostCard",
     props: {
@@ -6,7 +8,7 @@ export default {
     },
     data() {
         return {
-            baseUrl: 'http://localhost:8000',
+            store,
             maxNumChar: 60
         }
     },
@@ -33,7 +35,7 @@ export default {
             {{ post.title }}
         </div>
         <div class="card-image-top">
-            <img :src="`${baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
+            <img :src="`${store.baseUrl}/storage/${post.image}`" class="img-fluid" alt="Immagine del post">
         </div>
         <!-- sezione tipologia -->
         <div class="card-body">

@@ -2,15 +2,15 @@
 import axios from 'axios';
 import AppLoader from '../components/AppLoader.vue';
 import PostCard from '../components/PostCard.vue';
+import { store } from '../store';
 
 export default {
   name: 'PostList',
   components: { AppLoader, PostCard },
   data() {
     return {
-      baseUrl: 'http://localhost:8000',
+      store,
       posts: [],
-      loading: true,
     }
   },
   created() {
@@ -18,14 +18,14 @@ export default {
   },
   methods: {
     getPosts() {
-      this.loading = true;
+      this.store.loading = true;
       /* chiamata AXIOS inserendo il baseUrl e il rimanente indirizzo alla pagina */
-      axios.get(`${this.baseUrl}/api/posts`).then((response) => {
+      axios.get(`${this.store.baseUrl}/api/posts`).then((response) => {
         /* SE IL DATA.SUCCESS E' TRUE  */
         if (response.data.success) {
           /* VISUALIZZO I POST DALLA API E IMPOSTO IL LOADER A FALSE */
-          this.posts = response.data.results;
-          this.loading = false;
+          this.posts = response.data.results.data;
+          this.store.loading = false;
         }
       })
     },

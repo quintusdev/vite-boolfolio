@@ -9,7 +9,7 @@ export default {
                 { label: 'Chi Siamo' }, //TODO: add about page
                 { label: 'Articoli', routeName: 'posts' },  //TODO: add contact page
                 { label: 'Blog' }, //TODO: add blog page
-                { label: 'Contatti' },  //TODO: add contacts page
+                { label: 'Contatti', routeName: 'contacts' },  //TODO: add contacts page
             ]
         }
     },

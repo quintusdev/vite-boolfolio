@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import AppLoader from './AppLoader.vue';
 import { store } from '../store';
 
 export default {
@@ -23,7 +24,7 @@ export default {
             const data = {
                 name: this.name,
                 email: this.email,
-                content: this.message
+                content: this.content
             }
 
             /* pulisco preventivamente l'array degli errori */
@@ -67,7 +68,7 @@ export default {
                                 <label class="control-label">Nome e Cognome</label>
                                 <input type="text" name="name" id="name" v-model="name" placeholder="Nome e Cognome"
                                     class="form-control" :class="errors.name ? 'is-invalid' : ''">
-                                <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                                <p v-for="(error, index) in errors.name" :key="index" class="text-danger">
                                     {{ error }}
                                 </p>
                             </div>
@@ -75,21 +76,21 @@ export default {
                                 <label class="control-label">E-Mail</label>
                                 <input type="mail" name="email" id="email" v-model="email" placeholder="utente@mail.com"
                                     class="form-control" :class="errors.email ? 'is-invalid' : ''">
-                                <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                                <p v-for="(error, index) in errors.email" :key="index" class="text-danger">
                                     {{ error }}
                                 </p>
                             </div>
                             <div class="col-12">
                                 <label class="control-label">Richiesta</label>
-                                <input type="text" name="content" id="content" v-model="content"
+                                <textarea type="text" name="content" id="content" v-model="content"
                                     placeholder="Scrivi qui le tue richieste" class="form-control"
-                                    :class="errors.content ? 'is-invalid' : ''">
-                                <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                                    :class="errors.content ? 'is-invalid' : ''"></textarea>
+                                <p v-for="(error, index) in errors.content" :key="index" class="text-danger">
                                     {{ error }}
                                 </p>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-sm btn-success" type="submit" :disabled="loading">
+                                <button class="btn btn-sm btn-success my-5" type="submit" :disabled="loading">
                                     {{ loading ? 'Invio in corso' : 'Invia' }}
                                 </button>
                             </div>
@@ -98,7 +99,6 @@ export default {
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
