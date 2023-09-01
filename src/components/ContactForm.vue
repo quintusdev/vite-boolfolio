@@ -89,8 +89,9 @@ export default {
                                 </p>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-sm btn-success" type="submit" :disabled="loading">{{ loading ? 'Invio
-                                                                    mail in corso' : 'Invia'}}</button>
+                                <button class="btn btn-sm btn-success" type="submit" :disabled="loading">
+                                    {{ loading ? 'Invio in corso' : 'Invia' }}
+                                </button>
                             </div>
                         </form>
                     </div>
