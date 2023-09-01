@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from "./pages/HomePage.vue";
 import PostList from "./pages/PostList.vue";
 import ContactUs from "./pages/ContactUs.vue";
+import Thankyou from './pages/Thankyou.vue';
 
 /* creiamo il router */
 const router = createRouter({
@@ -15,7 +16,12 @@ const router = createRouter({
         /* imposto la rotta per la lista dei posts */
         { path: '/posts', name: "posts", component: PostList },
         /* imposto la rotta per la pagina contatti */
-        { path: '/contacts', name: "contacts", component: ContactUs }
+        { path: '/contacts', name: "contacts", component: ContactUs },
+        {
+            path: '/thank-you',
+            name: 'thank-you',
+            component: Thankyou
+        }
     ]
 });
 

@@ -41,6 +41,7 @@ export default {
                     this.name = '';
                     this.email = '';
                     this.content = '';
+                    this.$router.push({ name: 'thank-you' });
                 }
                 this.loading = false;
             });
